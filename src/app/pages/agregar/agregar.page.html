@@ -1,31 +1,38 @@
-<ion-header>
-  <ion-toolbar color="dark" class="ion-no-border">
+<ion-header class="ion-no-border">
+  <ion-toolbar class="ion-no-border">
    
      <ion-buttons slot="start">
-       <ion-back-button color="tertiary"defaultHref="/"></ion-back-button>
+       <ion-back-button color="tertiary"
+                        defaultHref="/"></ion-back-button>
      </ion-buttons>
 
-    <ion-title>Agregar Lista</ion-title>
+    <ion-title>{{ lista.titulo }}</ion-title>
   
   </ion-toolbar>
 </ion-header>
 
-<ion-content color="dark">
-<h1>Agregar Lista</h1>
-
-<ion-list color="secondary">
-  <ion-item >
+<ion-content>
+<ion-list>
+  <ion-item>
     <ion-label position="floating">Nuevo item</ion-label>
-    <ion-input type="text"></ion-input>
+    <ion-input type="text" 
+              [(ngModel)]="nombreItem"
+              (keyup.enter)="agregarItem()"></ion-input>
   </ion-item>
 </ion-list>
-
+<ion-list lines="none">
 <ion-list-header>
-    <ion-label>Tareas por hacer</ion-label>
+    <ion-label *ngIf="lista.items.lenght > 0">Tareas por hacer</ion-label>
 </ion-list-header>
 
-<ion-item>
-  <ion-checkbox slot="start" color="tertiary"></ion-checkbox>
-    <ion-label>Recordar comer hoy</ion-label>
+<ion-item *ngFor="let item of lista.items"
+          class="animated fadeInDown"
+          no-lines>
+  <ion-checkbox slot="start" 
+                color="tertiary"
+                [(ngModel)]="item.completado"
+                (ionChange)="cambioCheck( item )"></ion-checkbox>
+    <ion-label>{{ item.desc }} </ion-label>
 </ion-item>
+</ion-list>
 </ion-content>

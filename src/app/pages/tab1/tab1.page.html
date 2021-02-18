@@ -1,24 +1,18 @@
 <ion-header [translucent]="true" class="ion-no-border" >
-  <ion-toolbar class="backgroundDark" color="dark">
+  <ion-toolbar class="backgroundDark">
     <ion-title >
-      Pruebas
+      Pendientes
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="backgroundDark" [fullscreen]="true" >
- 
-  <ion-list>
-    <ion-item *ngFor="let lista of deseoService.listas" detail  color="secondary">
-      <ion-label >
-        <ion-icon name="rocket-outline" ></ion-icon>
-          {{ lista.titulo }}
-      </ion-label>
-    </ion-item>
-  </ion-list>
-
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed" >
-    <ion-fab-button color="tertiary" (click)="agregarLista()">
+  <app-listas [terminada]="false"></app-listas> 
+  <ion-fab vertical="bottom" 
+          horizontal="end" 
+          slot="fixed" >
+    <ion-fab-button color="tertiary" 
+                    (click)="agregarLista()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
